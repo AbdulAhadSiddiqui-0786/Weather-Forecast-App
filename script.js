@@ -1,7 +1,7 @@
 
-const apiKey = 'Your API KEY'; // Our Visual Crossing API key
+const apiKey = 'PWWG5ZSDGYK49N6NNKEG3T5P7'; // Our Visual Crossing API key
 
-// Base URL for fetching weather data from Visual Crossing
+//URL for fetching weather data from Visual Crossing
 const weatherUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline`;
 
 // Mapping of weather conditions to icon URLs
