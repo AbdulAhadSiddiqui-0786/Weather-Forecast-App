@@ -20,27 +20,50 @@ const iconMapping = {
 };
 
 // Fetch weather data (current and extended forecast)
+// Fetch weather data (current and extended forecast)
 async function fetchWeather(city) {
-    try {
-        const response = await fetch(`${weatherUrl}/${city}?unitGroup=metric&key=${apiKey}&contentType=json`);
-
-        if (!response.ok) {
-            alert('Error fetching weather data. Please check your API configuration or city name.');
-            return;
-        }
-
-        const data = await response.json();
-        console.log('Weather Data:', data); // Log the entire data object
-
-        displayWeather(data);
-        displayExtendedForecast(data.days.slice(0, 5)); // Pass only the first 5 days to this function
-        addToRecentCities(city);
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
-        alert('Error fetching weather data');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        loadingSpinner.classList.remove('hidden'); // Show loading spinner
+    
+        try {
+            const response = await fetch(`${weatherUrl}/${city}?unitGroup=metric&key=${apiKey}&contentType=json`);
+    
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+    
+            const data = await response.json();
+            console.log('Weather Data:', data); // Log the entire data object
+    
+            displayWeather(data);
+            displayExtendedForecast(data.days.slice(0, 5));
+            addToRecentCities(city);
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+            document.getElementById('errorMessage').innerText = `Could not fetch weather data: ${error.message}`;
+            document.getElementById('errorMessage').classList.remove('hidden');
+        } finally {
+            loadingSpinner.classList.add('hidden'); // Hide loading spinner
+        }
     }
-}
-
+    
+    // Update event listeners to include loading state
+    document.getElementById('searchBtn').addEventListener('click', async () => {
+        const city = document.getElementById('cityInput').value.trim();
+        if (city) {
+            await fetchWeather(city);
+        } else {
+            alert('Please enter a city name');
+        }
+    });
+    
+    document.getElementById('currentLocationBtn').addEventListener('click', async () => {
+        navigator.geolocation.getCurrentPosition(async position => {
+            const { latitude, longitude } = position.coords;
+            await fetchWeather(`${latitude},${longitude}`);
+        });
+    });
+    
 // Display current weather data
 function displayWeather(data) {
     const weatherDisplay = document.getElementById('weatherDisplay');
