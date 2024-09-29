@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +11,22 @@
 <body class="bg-gradient-to-r from-blue-200 to-blue-500 text-gray-900">
     <div class="container mx-auto p-6 max-w-4xl bg-white rounded-lg shadow-lg mt-10">
         <h1 class="text-4xl font-bold text-center text-blue-600 mb-8">Weather Forecast Application</h1>
-        
+    
         <!-- Search Section -->
         <div class="flex flex-col sm:flex-row justify-center mb-6 space-y-4 sm:space-y-0 sm:space-x-2">
             <input id="cityInput" type="text" placeholder="Enter city name" class="p-3 border border-blue-300 rounded-lg shadow focus:outline-none focus:ring focus:ring-blue-400 w-full sm:w-64" />
             <button id="searchBtn" class="bg-blue-600 text-white p-3 rounded-lg shadow hover:bg-blue-700 transition duration-200">Search</button>
             <button id="currentLocationBtn" class="bg-green-600 text-white p-3 rounded-lg shadow hover:bg-green-700 transition duration-200">Use Current Location</button>
         </div>
+
+        <!-- Loading Spinner -->
+<div id="loadingSpinner" class="text-center mb-4 hidden">
+        <svg class="animate-spin h-10 w-10 mx-auto text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 0016 0 8 8 0 00-16 0z"></path>
+        </svg>
+    </div>
+    
         
         <!-- Weather Display Section -->
         <div id="weatherDisplay" class="text-center mb-6 border border-gray-300 rounded-lg p-4 shadow-md"></div>
