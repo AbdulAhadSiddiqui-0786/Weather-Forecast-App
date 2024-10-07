@@ -43,10 +43,9 @@ A simple web application to display current weather and a 5-day forecast for a g
 1. Enter the name of the city in the input field and click the "Search" button to view the current weather and 5-day forecast.
 2. Click on "Use Current Location" to fetch weather data based on your geographical location.
 3. Recent searches will be saved and can be accessed via the dropdown menu.
+ 
+This project is open-source project developed my Abdul Ahad Siddiqui.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgments
 
